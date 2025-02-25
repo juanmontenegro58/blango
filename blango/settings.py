@@ -17,7 +17,7 @@ from configurations import values
 import dj_database_url
 
 class Dev(Configuration):
-
+  
   # Build paths inside the project like this: BASE_DIR / 'subdir'.
   BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +43,7 @@ class Dev(Configuration):
   # Application definition
   INTERNAL_IPS = ['192.168.10.93']
   INSTALLED_APPS = [
+      'blango_auth',
       'django.contrib.admin',
       'django.contrib.auth',
       'django.contrib.contenttypes',
@@ -54,6 +55,7 @@ class Dev(Configuration):
       'crispy_bootstrap5',
       "debug_toolbar",
   ]
+  AUTH_USER_MODEL = "blango_auth.User"
 
   MIDDLEWARE = [
       "debug_toolbar.middleware.DebugToolbarMiddleware",
