@@ -6,7 +6,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from blog.api.serializers import PostSerializer
+from blango_auth.models import User
+from blog.api.serializers import PostSerializer, UserSerializer
 from blog.models import Post
 
 
@@ -106,3 +107,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
 
 #     def delete(self, request, *args, **kwargs):
 #         return self.destroy(request, *args, **kwargs)
+class UserDetail(generics.RetrieveAPIView):
+    lookup_field = "email"
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
