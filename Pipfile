@@ -12,6 +12,7 @@ django-debug-toolbar = "*"
 django-registration = "*"
 djangorestframework = "*"
 django = {extras = ["argon2"], version = "*"}
+drf-yasg = "*"
 
 [dev-packages]
 
