@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 django-configurations = "*"
 dj-database-url = "*"
 django-crispy-forms = "*"
@@ -12,6 +11,7 @@ crispy-bootstrap5 = "*"
 django-debug-toolbar = "*"
 django-registration = "*"
 djangorestframework = "*"
+django = {extras = ["argon2"], version = "*"}
 
 [dev-packages]
 

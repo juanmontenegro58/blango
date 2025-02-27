@@ -33,11 +33,7 @@ class Dev(Configuration):
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
 
-    ALLOWED_HOSTS = [
-        "*",
-        'localhost',
-        '127.0.01'
-    ]
+    ALLOWED_HOSTS = ["*", "localhost", "127.0.01"]
     CSRF_COOKIE_SAMESITE = None
     CSRF_COOKIE_SECURE = True
     SESSION_COOKIE_SECURE = True
@@ -58,7 +54,8 @@ class Dev(Configuration):
         "crispy_forms",
         "crispy_bootstrap5",
         "debug_toolbar",
-        'rest_framework',
+        "rest_framework",
+        'rest_framework.authtoken',
     ]
     AUTH_USER_MODEL = "blango_auth.User"
 
@@ -197,6 +194,13 @@ class Dev(Configuration):
         "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
         "django.contrib.auth.hashers.BCryptSHA256PasswordHasher",
     ]
+    REST_FRAMEWORK = {
+        "DEFAULT_AUTHENTICATION_CLASSES": [
+            "rest_framework.authentication.BasicAuthentication",
+            "rest_framework.authentication.SessionAuthentication",
+            "rest_framework.authentication.TokenAuthentication",
+        ]
+    }
 
 
 class Prod(Dev):

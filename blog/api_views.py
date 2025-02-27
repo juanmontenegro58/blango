@@ -12,6 +12,7 @@ from blog.models import Post
 
 from rest_framework import mixins
 from rest_framework import generics
+from rest_framework.authentication import SessionAuthentication
 
 
 class PostList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
@@ -62,6 +63,7 @@ def post_list(request, format = None):
 class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    authentication_classes = [SessionAuthentication]
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()

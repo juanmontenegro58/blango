@@ -23,6 +23,7 @@ import blango_auth.views
 from django_registration.backends.activation.views import RegistrationView
 
 from blango_auth.forms import BlangoRegistrationForm
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,6 +40,9 @@ urlpatterns = [
     path("accounts/profile/", blango_auth.views.profile, name="profile"),
 
     path("api/v1/", include("blog.api_urls")),
+    path("auth/", include("rest_framework.urls")),
+    path("token-auth/", views.obtain_auth_token),
+
 ]
 if settings.DEBUG:
     urlpatterns += [
