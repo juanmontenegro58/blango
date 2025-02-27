@@ -13,7 +13,25 @@ from blog.models import Post
 from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.authentication import SessionAuthentication
+from rest_framework.permissions import IsAdminUser
 
+from rest_framework import permissions
+
+class ExampleComOnly(permissions.BasePermission):
+    def has_permission(self, request, view):
+        email = getattr(request.user, "email", "")
+        return email.split("@")[-1] == "example.com"
+    
+class AuthorModifyOrReadOnly(permissions.IsAuthenticatedOrReadOnly):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+
+        return request.user == obj.author
+
+class IsAdminUserForObject(permissions.IsAdminUser):
+    def has_object_permission(self, request, view, obj):
+        return bool(request.user and request.user.is_staff)
 
 class PostList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Post.objects.all()
@@ -64,8 +82,10 @@ class PostList(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     authentication_classes = [SessionAuthentication]
+    permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = [AuthorModifyOrReadOnly]
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
