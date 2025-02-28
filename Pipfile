@@ -13,6 +13,7 @@ django-registration = "*"
 djangorestframework = "*"
 django = {extras = ["argon2"], version = "*"}
 drf-yasg = "*"
+requests = "*"
 
 [dev-packages]
 
