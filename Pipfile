@@ -16,6 +16,7 @@ drf-yasg = "*"
 requests = "*"
 django-filter = "*"
 djangorestframework-simplejwt = "*"
+django-versatileimagefield = "*"
 
 [dev-packages]
 

@@ -59,8 +59,11 @@ class Dev(Configuration):
         "rest_framework.authtoken",
         "drf_yasg",
         'django_filters',
+        'versatileimagefield'
     ]
     AUTH_USER_MODEL = "blango_auth.User"
+    MEDIA_ROOT = BASE_DIR / "media"
+    MEDIA_URL = "/media/"
 
     MIDDLEWARE = [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
