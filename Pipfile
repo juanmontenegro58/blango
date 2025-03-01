@@ -15,6 +15,7 @@ django = {extras = ["argon2"], version = "*"}
 drf-yasg = "*"
 requests = "*"
 django-filter = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
