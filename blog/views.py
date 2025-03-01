@@ -7,6 +7,7 @@ from blog.forms import CommentForm
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 
+from django.urls import reverse
 import logging
 logger = logging.getLogger(__name__)
 # Create your views here.
@@ -63,4 +64,6 @@ def get_ip(request):
   return HttpResponse(request.META['REMOTE_ADDR'])
 
 def post_table(request):
-    return render(request, "blog/post-table.html")
+    return render(
+        request, "blog/post-table.html", {"post_list_url": reverse("post-list")}
+    )
